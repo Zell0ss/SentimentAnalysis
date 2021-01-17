@@ -1,0 +1,10 @@
+  
+[MASTER]
+# god bless https://stackoverflow.com/questions/1899436/pylint-unable-to-import-error-how-to-set-pythonpath
+init-hook='import sys; sys.path.append("E:\\Dropbox\\CODING\\test projects\\MinimalRestAPI\\")'
+
+disable=
+    wrong-import-order,
+    unnecessary-pass,
+    line-too-long,
+    pointless-statement

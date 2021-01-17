@@ -1,0 +1,2 @@
+nltk
+vader-multi
