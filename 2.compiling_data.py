@@ -76,14 +76,15 @@ sia = SentimentIntensityAnalyzer()
 sia.polarity_scores("Wow, NLTK is really powerful!")
 # %%
 # analisys with multilanguage sentiment analist vader-multi
+# but there is quota
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer as SIAmulti
 
-sia = SIAmulti()
-sia.polarity_scores("Wow, NLTK is really powerful!"), sia.polarity_scores(
+siam = SIAmulti()
+siam.polarity_scores(
     "Pero el que de verdad es bueno es el siamulti"
-), sia.polarity_scores("siamulti es realmente poderoso!"), sia.polarity_scores(
+), siam.polarity_scores("siamulti es realmente poderoso!"), siam.polarity_scores(
     "vader es una mierda"
-), sia.polarity_scores(
+), siam.polarity_scores(
     "✈️En dos dias estaré de vuelta en la lluviosa Asturias :-(☔️"
 )
 
