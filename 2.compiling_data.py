@@ -106,3 +106,67 @@ shuffle(tweets)
 for tweet in tweets[:10]:
     print(">", is_positive(tweet), tweet)
 # %%
+positive_review_ids = nltk.corpus.movie_reviews.fileids(categories=["pos"])
+negative_review_ids = nltk.corpus.movie_reviews.fileids(categories=["neg"])
+all_review_ids = positive_review_ids + negative_review_ids
+
+# %%
+## Measure sentiment (compound score) with movies  corpus
+from statistics import mean
+
+
+def is_positive(review_id: str) -> bool:
+    """True if the average of all sentence compound scores is positive."""
+    text = nltk.corpus.movie_reviews.raw(review_id)
+    scores = [
+        sia.polarity_scores(sentence)["compound"]
+        for sentence in nltk.sent_tokenize(text)
+    ]
+    return mean(scores) > 0
+
+
+# %%
+
+
+def is_positivec(review_id: str) -> bool:
+    """True if the countof all sentence with positive compound scores is higher than the negative."""
+    text = nltk.corpus.movie_reviews.raw(review_id)
+    scores_pos = [
+        1
+        for sentence in nltk.sent_tokenize(text)
+        if sia.polarity_scores(sentence)["compound"] > 0
+    ]
+    scores_neg = [
+        1
+        for sentence in nltk.sent_tokenize(text)
+        if sia.polarity_scores(sentence)["compound"] < 0
+    ]
+
+    return len(scores_pos) - len(scores_neg) > 0
+
+
+# %%
+shuffle(all_review_ids)
+correct = 0
+for review_id in all_review_ids:
+    if is_positive(review_id):
+        if review_id in positive_review_ids:
+            correct += 1
+    else:
+        if review_id in negative_review_ids:
+            correct += 1
+
+print(f"{correct / len(all_review_ids):.2%} correct")
+# %%
+shuffle(all_review_ids)
+correct = 0
+for review_id in all_review_ids:
+    if is_positivec(review_id):
+        if review_id in positive_review_ids:
+            correct += 1
+    else:
+        if review_id in negative_review_ids:
+            correct += 1
+
+print(f"{correct / len(all_review_ids):.2%} correct")
+# %%
