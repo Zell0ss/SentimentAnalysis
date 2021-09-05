@@ -1,10 +1,17 @@
   
 [MASTER]
 # god bless https://stackoverflow.com/questions/1899436/pylint-unable-to-import-error-how-to-set-pythonpath
-init-hook='import sys; sys.path.append("E:\\Dropbox\\CODING\\test projects\\MinimalRestAPI\\")'
+init-hook='import sys; sys.path.append("E:\\Dropbox\\CODING\\Machine Learning\\SentimentAnalisys\\")'
 
+# mostly to use ipykernel & jupyter inside vscode
 disable=
     wrong-import-order,
     unnecessary-pass,
     line-too-long,
-    pointless-statement
+    pointless-statement,
+    invalid-name,
+    wrong-import-position,
+    redefined-outer-name,
+    expression-not-assigned,
+    pointless-string-statement,
+    
